@@ -1,8 +1,8 @@
 {
-  "name": "graph",
-  "widgetName": "Graph",
-  "version": "1.2.4",
-  "description": "My widget description",
+  "name": "antdtree",
+  "widgetName": "AntdTree",
+  "version": "1.0.0",
+  "description": "Antd Tree",
   "author": "wengao.liu@siemens.com",
   "packagePath": "mendixcn",
   "copyright": "2020 Mendix Technology BV",
@@ -41,6 +41,7 @@
     "zlib": "^1.0.5"
   },
   "dependencies": {
+    "antd": "^4.16.13",
     "ahooks": "^2.10.14",
     "classnames": "^2.2.6"
   }
