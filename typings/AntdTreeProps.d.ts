@@ -10,7 +10,10 @@ export interface AntdTreeContainerProps {
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    sampleText: string;
+    datasourceMicroflow: string;
+    isLeaf: string;
+    title: string;
+    onSelectMicroflow: string;
 }
 
 export interface AntdTreePreviewProps {
@@ -18,5 +21,8 @@ export interface AntdTreePreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-    sampleText: string;
+    datasourceMicroflow: string;
+    isLeaf: string;
+    title: string;
+    onSelectMicroflow: string;
 }
