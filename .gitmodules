@@ -1,0 +1,3 @@
+[submodule "src/piw-utils-internal"]
+	path = src/piw-utils-internal
+	url = git@github.com:engalar/piw-utils-internal.git
