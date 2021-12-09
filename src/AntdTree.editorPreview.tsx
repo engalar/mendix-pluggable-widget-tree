@@ -5,7 +5,7 @@ import { AntdTreePreviewProps } from "../typings/AntdTreeProps";
 declare function require(name: string): string;
 
 export function preview(props: AntdTreePreviewProps) {
-    return (<div style={parseStyle(props.style)}></div>);
+    return <div style={parseStyle(props.style)}></div>;
 }
 
 export function getPreviewCss(): string {

@@ -24,5 +24,38 @@
                 <description></description>
             </property>
         </propertyGroup>
+        <propertyGroup caption="高级">
+            <propertyGroup caption="拖拽">
+                <property key="dropNode" type="attribute" required="false">
+                    <caption>drop node</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="dropParent" type="attribute" required="false">
+                    <caption>drop parent</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="dropPos" type="attribute" required="false">
+                    <caption>drop Pos</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="draggable" type="boolean" defaultValue="false">
+                    <caption>可拖拽</caption>
+                    <description></description>
+                </property>
+                <property key="onDrop" type="action">
+                    <caption>拖拽事件处理逻辑</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
     </properties>
 </widget>

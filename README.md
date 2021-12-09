@@ -6,6 +6,7 @@
 
 ```cmd
 git clone --recurse-submodules https://github.com/engalar/mendix-pluggable-widget-template.git
+git submodule update // 如果你不是通过上面这边命令克隆，并且子模块`src/piw-utils-internal`目录为空，则执行本条语句
 ```
 
 -   用`Vscode`打开

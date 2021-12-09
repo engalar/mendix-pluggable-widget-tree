@@ -1,8 +1,8 @@
 import { AntdTreeContainerProps } from "../typings/AntdTreeProps";
 import { createElement, useCallback, useEffect, useState, Key } from "react";
+import { ValueStatus } from "mendix";
 
 import { useDebounceFn, useWhyDidYouUpdate } from "ahooks";
-
 
 import "./ui/index.scss";
 import { TreeContainer } from "./components/TreeContainer";
@@ -26,8 +26,9 @@ function updateTreeData(list: DataNode[], key: Key, children: DataNode[]): DataN
         return node;
     });
 }
-export default function Graph(props: AntdTreeContainerProps) {
+export default function (props: AntdTreeContainerProps) {
     const [checkedKeys, setCheckedKeys] = useState<string[]>();
+    const [dirty, setDirty] = useState(true);
 
     const [treeData, setTreeData] = useState<DataNode[]>([]);
 
@@ -108,11 +109,37 @@ export default function Graph(props: AntdTreeContainerProps) {
         [widget, props.onSelectMicroflow]
     );
 
+    const onDrop = useCallback(
+        (drag?: DataNode, parent?: DataNode, pos?: DataNode) => {
+            if (props.dropNode && props.dropNode.status === ValueStatus.Available) {
+                props.dropNode.setValue(drag?.title as string);
+            }
+            if (props.dropPos && props.dropPos.status === ValueStatus.Available) {
+                props.dropPos.setValue(pos?.title as string);
+            }
+            if (props.dropParent && props.dropParent.status === ValueStatus.Available) {
+                props.dropParent.setValue(parent?.title as string);
+            }
+            if (props.onDrop && props.onDrop.canExecute && !props.onDrop.isExecuting) {
+                setDirty(true);
+                props.onDrop.execute();
+            }
+        },
+        [props.onDrop, props.dropParent, props.dropPos]
+    );
+
     useEffect(() => {
         if (widget) {
             onLoadData({});
         }
     }, [widget]);
+
+    useEffect(() => {
+        if (widget && dirty && props.onDrop && !props.onDrop.isExecuting) {
+            setDirty(false);
+            onLoadData({});
+        }
+    }, [widget, props.onDrop, dirty]);
 
     const { run } = useDebounceFn(
         () => {
@@ -140,6 +167,8 @@ export default function Graph(props: AntdTreeContainerProps) {
                 onChange={onChange}
                 loadData={onLoadData}
                 treeData={treeData}
+                draggable={props.draggable}
+                onDrop={onDrop}
             ></TreeContainer>
         </div>
     );
